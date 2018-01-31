@@ -1,0 +1,57 @@
+version: "3"
+services:
+    prometheus:
+        image: prom/prometheus
+        container_name: prometheus
+        depends_on:
+            - sample1
+            - sample2
+            - sample3
+            - node_local
+        links:
+            - sample1
+            - sample2
+            - sample3
+            - node_local
+        volumes:
+            - ./prometheus.yml:/etc/prometheus/prometheus.yml
+        ports:
+            - "9090:9090"
+    grafana:
+        image: grafana/grafana
+        container_name: grafane
+        depends_on:
+            - prometheus
+        links:
+            - prometheus
+        ports:
+            - "3000:3000"
+        environment:
+            GF_SECURITY_ADMIN_USER: admin
+            GF_SECURITY_ADMIN_PASSWORD: pass
+            GF_USERS_ALLOW_SIGN_UP: "false"
+            GF_USERS_ALLOW_ORG_CREATE: "false"
+    sample1:
+        build: random
+        container_name: sample1
+        ports:
+            - 8080:8080
+    sample2:
+        build: random
+        container_name: sample2
+        ports:
+            - 8081:8080
+    sample3:
+        build: random
+        container_name: sample3
+        ports:
+            - 8082:8080
+    node_local:
+        image: quay.io/prometheus/node-exporter
+        container_name: node_local
+        ports:
+            - 9100:9100
+        volumes:
+            - /proc:/host/proc
+            - /sys:/host/sys
+            - /:/rootfs

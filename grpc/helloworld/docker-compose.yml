@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  greeter_server:
+    build: greeter_server
+    hostname: greeter
+    domainname: server1
+    ports:
+        - "50051:50051"
+    networks:
+        - frontend
+networks:
+  frontend:
