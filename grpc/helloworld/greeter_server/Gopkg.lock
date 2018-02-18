@@ -11,7 +11,7 @@
   branch = "master"
   name = "github.com/seiji/examples"
   packages = ["grpc/helloworld/helloworld"]
-  revision = "af2bca2a0cf12e67f0ec8a2e57b5c198596fec88"
+  revision = "24027e084f4f4d7e760e949544b915fb52777f32"
 
 [[projects]]
   branch = "master"
