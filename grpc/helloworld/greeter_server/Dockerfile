@@ -1,11 +1,10 @@
-FROM golang:1.9-alpine
+FROM golang:1.9.3 AS builder
+RUN go get -d github.com/seiji/examples/grpc/helloworld/greeter_server
+WORKDIR /go/src/github.com/seiji/examples/grpc/helloworld/greeter_server
+RUN CGO_ENABLED=0 GOOS=linux go build -a -tags netgo -ldflags '-w'
 
-RUN \
-  apk --update add --no-cache git &&\
-  go get -u github.com/seiji/grpc-examples/helloworld/greeter_server/cmd &&\
-  apk del git &&\
-  rm -rf /go/src
-
+FROM scratch
+COPY --from=builder /go/src/github.com/seiji/examples/grpc/helloworld/greeter_server
 EXPOSE 50051
 
-CMD ["greeter_server"]
+ENTRYPOINT ["/greeter_server"]

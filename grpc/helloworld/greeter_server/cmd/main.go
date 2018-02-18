@@ -18,7 +18,7 @@ package main
  *
  */
 import (
-	sv "github.com/seiji/grpc-examples/helloworld/greeter_server"
+	sv "github.com/seiji/examples/grpc/helloworld/greeter_server"
 )
 
 const (

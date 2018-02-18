@@ -7,8 +7,8 @@ import (
 	"golang.org/x/net/context"
 	g "google.golang.org/grpc"
 
-	sv "github.com/seiji/grpc-examples/helloworld/greeter_server"
-	pb "github.com/seiji/grpc-examples/helloworld/helloworld"
+	sv "github.com/seiji/examples/grpc/helloworld/greeter_server"
+	pb "github.com/seiji/examples/grpc/helloworld/helloworld"
 )
 
 const (

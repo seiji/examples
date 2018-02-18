@@ -9,7 +9,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	pb "github.com/seiji/grpc-examples/helloworld/helloworld"
+	pb "github.com/seiji/examples/grpc/helloworld/helloworld"
 )
 
 var (
